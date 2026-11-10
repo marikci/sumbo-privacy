@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sumbo - Destek / Support</title>
+<style>
+:root{--bg:#fff;--fg:#1c1530;--mut:#5b5370;--line:#e4dff0;--acc:#5b32c8}
+@media (prefers-color-scheme:dark){:root{--bg:#150a33;--fg:#f1ebff;--mut:#b6a6e8;--line:#3a2a73;--acc:#b58cff}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding:24px 16px 64px}
+main{max-width:720px;margin:0 auto}
+h1{font-size:28px;line-height:1.25;margin:0 0 4px}
+h2{font-size:19px;margin:24px 0 6px}
+p{margin:6px 0}
+a{color:var(--acc)}
+.sw{display:flex;gap:8px;margin:12px 0 20px}
+.sw button{font:inherit;min-height:44px;padding:8px 16px;border-radius:10px;border:1px solid var(--line);background:transparent;color:var(--fg);cursor:pointer}
+.sw button[aria-pressed="true"]{background:var(--acc);border-color:var(--acc);color:#fff}
+body.l-tr .en{display:none}
+body.l-en .tr{display:none}
+</style>
+</head>
+<body>
+<main>
+<div class="sw" role="group" aria-label="Language / Dil">
+<button type="button" data-l="tr" aria-pressed="false">Türkçe</button>
+<button type="button" data-l="en" aria-pressed="false">English</button>
+</div>
+<section class="tr" lang="tr">
+<h1>Sumbo Destek</h1>
+<p>Bir sorunuz, hata bildiriminiz ya da öneriniz mi var? Bize yazın: <a href="mailto:arikci@gmail.com">arikci@gmail.com</a></p>
+<h2>Sık sorulanlar</h2>
+<p><strong>İlerlemem kayboldu.</strong> Oyun ilerlemesi cihazınızda saklanır. Uygulamayı silerseniz ya da cihaz değiştirirseniz ilerleme sıfırlanabilir.</p>
+<p><strong>Reklamları kaldırabilir miyim?</strong> "Reklamsız" satın alması bölüm aralarındaki reklamları kaldırır. İsteğe bağlı ödüllü reklamlar (ipucu, ek hamle, çarpan) sizin seçiminizle izlenir.</p>
+<p><strong>Gizlilik.</strong> <a href="../privacy/">Gizlilik Politikası</a></p>
+<p>Hata bildirirken cihaz modelinizi, işletim sistemi sürümünüzü ve hangi bölümde olduğunuzu yazarsanız sorunu daha hızlı bulabiliriz.</p>
+</section>
+<section class="en" lang="en">
+<h1>Sumbo Support</h1>
+<p>Have a question, a bug report or a suggestion? Write to us: <a href="mailto:arikci@gmail.com">arikci@gmail.com</a></p>
+<h2>FAQ</h2>
+<p><strong>My progress is gone.</strong> Game progress is stored on your device. If you delete the app or change devices, your progress may be reset.</p>
+<p><strong>Can I remove ads?</strong> The "Remove ads" purchase removes the ads between levels. Optional rewarded ads (hints, extra moves, multipliers) are only shown when you choose to watch them.</p>
+<p><strong>Privacy.</strong> <a href="../privacy/">Privacy Policy</a></p>
+<p>When reporting a bug, please include your device model, operating system version and the level you were on so we can find the problem faster.</p>
+</section>
+</main>
+<script>
+(function(){
+ var b=document.body,btn=document.querySelectorAll('.sw button');
+ function set(l){b.className='l-'+l;document.documentElement.lang=l;btn.forEach(function(x){x.setAttribute('aria-pressed',String(x.dataset.l===l))})}
+ var d=(navigator.language||'en').toLowerCase().indexOf('tr')===0?'tr':'en';
+ try{var s=localStorage.getItem('lang');if(s==='tr'||s==='en')d=s}catch(e){}
+ set(d);
+ btn.forEach(function(x){x.addEventListener('click',function(){set(x.dataset.l);try{localStorage.setItem('lang',x.dataset.l)}catch(e){}})});
+})();
+</script>
+</body>
+</html>
